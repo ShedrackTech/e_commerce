@@ -1,0 +1,31 @@
+# Virtual environment folders (inside project root)
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+share/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+.env.*
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

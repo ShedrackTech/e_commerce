@@ -1,0 +1,331 @@
+{% extends "shop/base/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Profile — Django-Ecommerce{% endblock %}
+
+{% block content %}
+
+{# ── Breadcrumb ─────────────────────────────────────────────────────────────── #}
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="{% url 'shop:product_list' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">My Profile</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# ── Main Section ───────────────────────────────────────────────────────────── #}
+<div class="site-section">
+    <div class="container">
+
+        {# ── Messages ────────────────────────────────────────────────────── #}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
+        <div class="row">
+
+            {# ── Sidebar ─────────────────────────────────────────────────── #}
+            <div class="col-md-3 mb-5 mb-md-0" data-aos="fade-up">
+
+                {# Avatar card #}
+                <div class="border p-4 rounded text-center mb-3">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}"
+                             alt="{{ user.get_full_name }}"
+                             class="rounded-circle mb-3"
+                             style="width:100px;height:100px;object-fit:cover;">
+                    {% else %}
+                        {# Initials fallback #}
+                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3"
+                             style="width:100px;height:100px;">
+                            <span class="text-white font-weight-bold"
+                                  style="font-size:2rem;line-height:1;">
+                                {{ user.first_name|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}
+                            </span>
+                        </div>
+                    {% endif %}
+
+                    <h3 class="text-black h5 mb-0">{{ user.get_full_name }}</h3>
+                    <p class="text-muted small mb-0">{{ user.email }}</p>
+
+                    {% if user.has_complete_profile %}
+                        <span class="badge badge-success mt-2">Profile Complete</span>
+                    {% else %}
+                        <span class="badge badge-warning mt-2">Profile Incomplete</span>
+                    {% endif %}
+                </div>
+
+                {# Account navigation #}
+                <div class="border p-4 rounded">
+                    <h3 class="text-black h6 text-uppercase mb-3">My Account</h3>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <a href="{% url 'shop:profile' %}"
+                               class="d-flex align-items-center text-black font-weight-bold">
+                                <span class="icon icon-person mr-2 text-primary"></span>
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'order:order_list' %}"
+                               class="d-flex align-items-center text-black">
+                                <span class="icon icon-shopping_cart mr-2 text-primary"></span>
+                                My Orders
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'shop:password_change' %}"
+                               class="d-flex align-items-center text-black">
+                                <span class="icon icon-lock mr-2 text-primary"></span>
+                                Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'shop:logout' %}"
+                               class="d-flex align-items-center text-danger">
+                                <span class="icon icon-power_settings_new mr-2"></span>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {# ── Profile Form ────────────────────────────────────────────── #}
+            <div class="col-md-9" data-aos="fade-up" data-aos-delay="100">
+
+                {# ── Personal Details Tab ─────────────────────────────────── #}
+                <div class="border p-4 rounded mb-4">
+                    <h3 class="text-black h5 mb-4 border-bottom pb-3">Personal Details</h3>
+
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        {# Name row #}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="text-black" for="{{ form.first_name.id_for_label }}">First Name</label>
+                                <input type="text"
+                                       id="{{ form.first_name.id_for_label }}"
+                                       name="first_name"
+                                       value="{{ form.first_name.value|default:'' }}"
+                                       class="form-control {% if form.first_name.errors %}is-invalid{% endif %}">
+                                {% for error in form.first_name.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="text-black" for="{{ form.last_name.id_for_label }}">Last Name</label>
+                                <input type="text"
+                                       id="{{ form.last_name.id_for_label }}"
+                                       name="last_name"
+                                       value="{{ form.last_name.value|default:'' }}"
+                                       class="form-control {% if form.last_name.errors %}is-invalid{% endif %}">
+                                {% for error in form.last_name.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {# Email + Phone #}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="text-black" for="{{ form.email.id_for_label }}">Email Address</label>
+                                <input type="email"
+                                       id="{{ form.email.id_for_label }}"
+                                       name="email"
+                                       value="{{ form.email.value|default:'' }}"
+                                       class="form-control {% if form.email.errors %}is-invalid{% endif %}">
+                                {% for error in form.email.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="text-black" for="{{ form.phone.id_for_label }}">Phone Number</label>
+                                <input type="text"
+                                       id="{{ form.phone.id_for_label }}"
+                                       name="phone"
+                                       value="{{ form.phone.value|default:'' }}"
+                                       placeholder="+1 555 000 0000"
+                                       class="form-control {% if form.phone.errors %}is-invalid{% endif %}">
+                                {% for error in form.phone.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {# Profile picture #}
+                        <div class="form-group">
+                            <label class="text-black">Profile Picture</label>
+                            <div class="custom-file">
+                                <input type="file"
+                                       class="custom-file-input"
+                                       id="{{ form.avatar.id_for_label }}"
+                                       name="avatar"
+                                       accept="image/*">
+                                <label class="custom-file-label" for="{{ form.avatar.id_for_label }}">
+                                    {% if user.avatar %}Change picture{% else %}Choose file{% endif %}
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">JPG, PNG or GIF. Max 2 MB.</small>
+                        </div>
+
+                        {# ── Shipping Address ────────────────────────────── #}
+                        <h4 class="text-black h6 text-uppercase mt-4 mb-3 border-bottom pb-2">
+                            Shipping Address
+                        </h4>
+
+                        <div class="form-group">
+                            <label class="text-black" for="{{ form.address.id_for_label }}">Street Address</label>
+                            <input type="text"
+                                   id="{{ form.address.id_for_label }}"
+                                   name="address"
+                                   value="{{ form.address.value|default:'' }}"
+                                   placeholder="123 Main Street"
+                                   class="form-control {% if form.address.errors %}is-invalid{% endif %}">
+                            {% for error in form.address.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="text-black" for="{{ form.city.id_for_label }}">City</label>
+                                <input type="text"
+                                       id="{{ form.city.id_for_label }}"
+                                       name="city"
+                                       value="{{ form.city.value|default:'' }}"
+                                       class="form-control {% if form.city.errors %}is-invalid{% endif %}">
+                                {% for error in form.city.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="text-black" for="{{ form.postal_code.id_for_label }}">Postal Code</label>
+                                <input type="text"
+                                       id="{{ form.postal_code.id_for_label }}"
+                                       name="postal_code"
+                                       value="{{ form.postal_code.value|default:'' }}"
+                                       class="form-control {% if form.postal_code.errors %}is-invalid{% endif %}">
+                                {% for error in form.postal_code.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="text-black" for="{{ form.country.id_for_label }}">Country</label>
+                                <input type="text"
+                                       id="{{ form.country.id_for_label }}"
+                                       name="country"
+                                       value="{{ form.country.value|default:'' }}"
+                                       class="form-control {% if form.country.errors %}is-invalid{% endif %}">
+                                {% for error in form.country.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {# Newsletter #}
+                        <div class="form-group mt-2">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       class="custom-control-input"
+                                       id="{{ form.newsletter.id_for_label }}"
+                                       name="newsletter"
+                                       {% if form.newsletter.value %}checked{% endif %}>
+                                <label class="custom-control-label text-black"
+                                       for="{{ form.newsletter.id_for_label }}">
+                                    Receive newsletters and promotions
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <input type="submit"
+                                   value="Save Changes"
+                                   class="btn btn-primary btn-md py-3 px-5">
+                            <a href="{% url 'shop:product_list' %}"
+                               class="btn btn-outline-secondary btn-md py-3 px-5 ml-2">
+                                Cancel
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+
+                {# ── Quick order summary ───────────────────────────────────── #}
+                <div class="border p-4 rounded">
+                    <h3 class="text-black h5 mb-4 border-bottom pb-3">Recent Orders</h3>
+                    {% if recent_orders %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="text-black">Order #</th>
+                                        <th class="text-black">Date</th>
+                                        <th class="text-black">Items</th>
+                                        <th class="text-black">Total</th>
+                                        <th class="text-black">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in recent_orders %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'order:order_detail' order.id %}"
+                                               class="text-primary">#{{ order.id }}</a>
+                                        </td>
+                                        <td>{{ order.created|date:"d M Y" }}</td>
+                                        <td>{{ order.items.count }}</td>
+                                        <td>${{ order.get_total_cost }}</td>
+                                        <td>
+                                            {% if order.paid %}
+                                                <span class="badge badge-success">Paid</span>
+                                            {% else %}
+                                                <span class="badge badge-warning">Pending</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'order:order_list' %}" class="btn btn-outline-primary btn-sm">
+                            View All Orders
+                        </a>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <span class="icon icon-shopping_cart text-muted"
+                                  style="font-size:3rem;"></span>
+                            <p class="text-muted mt-3 mb-3">You haven&rsquo;t placed any orders yet.</p>
+                            <a href="{% url 'shop:product_list' %}"
+                               class="btn btn-primary btn-sm py-3 px-5">Start Shopping</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.querySelector('.custom-file-input').addEventListener('change', function () {
+        var fileName = this.files[0] ? this.files[0].name : 'Choose file';
+        this.nextElementSibling.textContent = fileName;
+    });
+</script>
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,167 @@
+
+<header class="site-navbar" role="banner">
+    <div class="site-navbar-top">
+        <div class="container">
+            <div class="row align-items-center">
+
+                {# Search #}
+                <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                    <form action="" class="site-block-top-search">
+                        <span class="icon icon-search2"></span>
+                        <input type="text" class="form-control border-0" placeholder="Search">
+                    </form>
+                </div>
+
+                {# Logo #}
+                <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                    <div class="site-logo">
+                        <a href="{% url 'shop:product_list' %}" class="js-logo-clone">
+                            Django-Ecommerce
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                    <div class="site-top-icons">
+                        <ul>
+                            {% if user.is_authenticated %}
+                                <li class="dropdown" style="display:inline-block;position:relative;">
+                                    <a href="#"
+                                       id="userMenuToggle"
+                                       class="dropdown-toggle site-cart"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false"
+                                       title="{{ user.get_full_name|default:user.email }}">
+
+                                        {# Initials badge — mirrors the profile avatar style #}
+                                        <span class="rounded-circle bg-primary text-white d-inline-flex
+                                                     align-items-center justify-content-center font-weight-bold"
+                                              style="width:32px;height:32px;font-size:.75rem;vertical-align:middle;">
+                                            {{ user.first_name|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}
+                                        </span>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                         aria-labelledby="userMenuToggle"
+                                         style="min-width:200px;">
+
+                                        {# User info header #}
+                                        <div class="px-4 py-2 border-bottom">
+                                            <p class="mb-0 font-weight-bold text-black small">
+                                                {{ user.get_full_name|default:user.username }}
+                                            </p>
+                                            <p class="mb-0 text-muted"
+                                               style="font-size:.75rem;word-break:break-all;">
+                                                {{ user.email }}
+                                            </p>
+                                        </div>
+
+                                        <a class="dropdown-item" href="{% url 'shop:profile' %}">
+                                            <span class="icon icon-person mr-2 text-primary"></span>
+                                            My Profile
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'order:order_list' %}">
+                                            <span class="icon icon-shopping_cart mr-2 text-primary"></span>
+                                            My Orders
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'shop:password_change' %}">
+                                            <span class="icon icon-lock mr-2 text-primary"></span>
+                                            Change Password
+                                        </a>
+
+                                        {% if user.is_staff %}
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'admin:index' %}">
+                                                <span class="icon icon-settings mr-2 text-primary"></span>
+                                                Admin Panel
+                                            </a>
+                                        {% endif %}
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger"
+                                           href="{% url 'shop:logout' %}">
+                                            <span class="icon icon-power_settings_new mr-2"></span>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+
+                            {% else %}
+                                <li style="display:inline-block;">
+                                    <a href="{% url 'shop:login' %}"
+                                       title="Login"
+                                       class="btn btn-sm btn-outline-primary px-3"
+                                       style="font-size:.8rem;border-radius:20px;vertical-align:middle;">
+                                        Login
+                                    </a>
+                                </li>
+                                <li style="display:inline-block;margin-left:6px;">
+                                    <a href="{% url 'shop:register' %}"
+                                       title="Register"
+                                       class="btn btn-sm btn-primary px-3"
+                                       style="font-size:.8rem;border-radius:20px;vertical-align:middle;">
+                                        Register
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {# Cart icon #}
+                            <li>
+                                <a href="{% url 'cart:cart_detail' %}" class="site-cart">
+                                    <span class="icon icon-shopping_cart"></span>
+                                    <span class="count">
+                                        {% with total_items=cart|length %}
+                                            {% if cart|length > 0 %}
+                                                {{ total_items }}
+                                            {% else %}
+                                                0
+                                            {% endif %}
+                                        {% endwith %}
+                                    </span>
+                                </a>
+                            </li>
+
+                            {# Mobile menu toggle #}
+                            <li class="d-inline-block d-md-none ml-md-0">
+                                <a href="#" class="site-menu-toggle js-menu-toggle">
+                                    <span class="icon-menu"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <nav class="site-navigation text-right text-md-center" role="navigation">
+        <div class="container">
+            <ul class="site-menu js-clone-nav d-none d-md-block">
+                <li><a href="{% url 'shop:product_list' %}">Home</a></li>
+                <li><a href="{% url 'shop:product_list' %}">Shop</a></li>
+                <li><a href="{% url 'shop:about' %}">About</a></li>
+                <li><a href="{% url 'shop:contact' %}">Contact</a></li>
+
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'shop:profile' %}">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'shop:logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'shop:login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'shop:register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+</header>

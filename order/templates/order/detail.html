@@ -1,0 +1,101 @@
+{% extends "shop/base/base.html" %}
+{% block title %}Order #{{ order.id }}{% endblock %}
+
+{% block content %}
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="{% url 'shop:product_list' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <a href="{% url 'order:order_list' %}">My Orders</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">Order #{{ order.id }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+
+            {# ── Order Items ─────────────────────────────────────────────── #}
+            <div class="col-md-8 mb-5">
+                <h2 class="h3 text-black mb-4">Order #{{ order.id }}</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items.all %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>${{ item.get_cost }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right font-weight-bold">Total</td>
+                                <td class="font-weight-bold">${{ order.get_total_cost }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <a href="{% url 'order:order_list' %}" class="btn btn-outline-secondary mt-3">
+                    &larr; Back to My Orders
+                </a>
+            </div>
+
+            {# ── Order Summary ────────────────────────────────────────────── #}
+            <div class="col-md-4">
+                <div class="border p-4 rounded mb-3">
+                    <h3 class="h5 text-black text-uppercase mb-4">Order Info</h3>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Date</span>
+                            <strong>{{ order.created|date:"N j, Y" }}</strong>
+                        </li>
+                        <li class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Status</span>
+                            <strong>
+                                {% if order.paid %}
+                                    <span class="badge badge-success">Paid</span>
+                                {% else %}
+                                    <span class="badge badge-warning">Pending</span>
+                                {% endif %}
+                            </strong>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-muted">Total</span>
+                            <strong>${{ order.get_total_cost }}</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="border p-4 rounded">
+                    <h3 class="h5 text-black text-uppercase mb-4">Shipping Address</h3>
+                    <address class="text-muted mb-0">
+                        {{ order.first_name }} {{ order.last_name }}<br>
+                        {{ order.address }}<br>
+                        {{ order.postal_code }}, {{ order.city }}<br>
+                        <a href="mailto:{{ order.email }}">{{ order.email }}</a>
+                    </address>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

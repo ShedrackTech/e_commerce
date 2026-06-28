@@ -1,0 +1,356 @@
+/* ============================================================
+   THEME OVERRIDE — Django-Ecommerce
+   Drop this AFTER style.css in base.html:
+   <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+   ============================================================ */
+
+/* ── Palette ────────────────────────────────────────────────
+   --bg-base      : page canvas
+   --bg-surface   : cards, panels, form boxes
+   --bg-muted     : breadcrumbs, alt sections, table headers
+   --bg-dark      : footer, hero overlay
+   --accent       : primary purple (kept from original)
+   --accent-hover : darker purple for hover states
+   --border       : subtle divider colour
+   --text-base    : body copy
+   --text-heading : headings / labels
+   --text-muted   : secondary copy
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-base:      #0f1117;
+  --bg-surface:   #1a1d27;
+  --bg-elevated:  #21253a;
+  --bg-muted:     #13151f;
+  --accent:       #7971ea;
+  --accent-hover: #5a52d5;
+  --border:       rgba(255,255,255,.08);
+  --text-base:    #c8cad4;
+  --text-heading: #f0f1f5;
+  --text-muted:   #7a7f94;
+  --success:      #2eb872;
+  --danger:       #e05c6a;
+}
+
+/* ── Base reset ─────────────────────────────────────────── */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-base);
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+.text-black,
+label.text-black,
+.h3.text-black,
+.h5.text-black,
+.h6.text-black,
+.footer-heading {
+  color: var(--text-heading) !important;
+}
+
+p, li, td, th { color: var(--text-base); }
+
+.text-muted { color: var(--text-muted) !important; }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+/* ── Site-section backgrounds ───────────────────────────── */
+.site-section             { background-color: var(--bg-base); }
+.site-section.bg-light,
+.bg-light                 { background-color: var(--bg-muted) !important; }
+
+/* ── Breadcrumb bar ─────────────────────────────────────── */
+.bg-light.py-3 {
+  background-color: var(--bg-muted) !important;
+  border-bottom: 1px solid var(--border);
+}
+.bg-light.py-3 a,
+.bg-light.py-3 span       { color: var(--text-muted); }
+.bg-light.py-3 strong     { color: var(--text-heading); }
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.site-navbar,
+.site-navbar .site-navbar-top {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+}
+.site-navbar .site-logo a     { color: var(--text-heading) !important; border-color: var(--text-heading) !important; }
+.site-navbar a                { color: var(--text-muted) !important; }
+.site-navbar a:hover          { color: var(--accent) !important; }
+.site-navbar .site-navigation { border-color: var(--border) !important; }
+.site-navigation .site-menu > li > a { color: var(--text-heading) !important; }
+.site-navigation .site-menu > li > a:hover { color: var(--accent) !important; }
+
+/* Dropdown */
+.site-menu .has-children .dropdown {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+  border-top-color: var(--accent) !important;
+}
+.site-menu .has-children .dropdown > li > a { color: var(--text-muted) !important; }
+.site-menu .has-children .dropdown > li > a:hover {
+  background: var(--bg-muted) !important;
+  color: var(--text-heading) !important;
+}
+
+/* Search box */
+.site-block-top-search input {
+  background: var(--bg-elevated);
+  color: var(--text-base);
+  border: 1px solid var(--border) !important;
+}
+.site-block-top-search input::placeholder { color: var(--text-muted); }
+
+/* User initials badge stays accent */
+.rounded-circle.bg-primary { background-color: var(--accent) !important; }
+
+/* ── Dropdown menu (Bootstrap) ──────────────────────────── */
+.dropdown-menu {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+.dropdown-menu .dropdown-item       { color: var(--text-base); }
+.dropdown-menu .dropdown-item:hover { background: var(--bg-muted); color: var(--text-heading); }
+.dropdown-menu .dropdown-divider    { border-color: var(--border); }
+.dropdown-menu .px-4.py-2.border-bottom { border-color: var(--border) !important; }
+.dropdown-item.text-danger          { color: var(--danger) !important; }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-primary {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  color: #fff !important;          /* ← fixes the blurry/invisible text on hover */
+}
+
+.btn-outline-primary {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+.btn-outline-secondary {
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+}
+.btn-outline-secondary:hover {
+  background-color: var(--bg-elevated) !important;
+  color: var(--text-heading) !important;
+}
+
+/* ── Form controls ───────────────────────────────────────── */
+.form-control,
+.custom-select,
+select.form-control {
+  background-color: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-base) !important;
+}
+.form-control::placeholder         { color: var(--text-muted) !important; }
+.form-control:focus,
+.form-control:active {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(121,113,234,.15) !important;
+  background-color: var(--bg-elevated) !important;
+  color: var(--text-base) !important;
+}
+
+/* Select option colours (Chrome/Edge) */
+select.form-control option {
+  background-color: var(--bg-elevated);
+  color: var(--text-base);
+}
+
+/* Input-group addon */
+.input-group-append .btn-outline-secondary {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+/* Custom file */
+.custom-file-label {
+  background-color: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+.custom-file-label::after {
+  background-color: var(--bg-muted) !important;
+  color: var(--text-base) !important;
+  border-color: var(--border) !important;
+}
+
+/* Custom checkbox */
+.custom-control-label::before {
+  background-color: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.custom-control-label { color: var(--text-base) !important; }
+
+/* Validation colours */
+.form-control.is-invalid { border-color: var(--danger) !important; }
+.invalid-feedback         { color: var(--danger); }
+
+/* ── Cards / Panels / Borders ───────────────────────────── */
+.border,
+.border-top,
+.border-bottom {
+  border-color: var(--border) !important;
+}
+
+/* White card boxes used in contact & about */
+.bg-white,
+.p-4.bg-white,
+.bg-white.p-4 {
+  background-color: var(--bg-surface) !important;
+}
+
+/* Bordered panels (profile, login sidebar, about values) */
+.border.p-4.rounded,
+.border.p-4.rounded.mb-3,
+.border.p-4.rounded.mb-4,
+.border.p-4.rounded.mt-3 {
+  background-color: var(--bg-surface);
+  border-color: var(--border) !important;
+}
+
+/* Product cards */
+.block-4 {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,.4) !important;
+}
+.block-4 .block-4-text h3 a { color: var(--text-heading) !important; }
+.block-4 .block-4-text p    { color: var(--text-muted); }
+
+/* Feature blocks (free shipping etc.) */
+.site-blocks-1 {
+  background-color: var(--bg-surface);
+  border-color: var(--border) !important;
+}
+.site-blocks-1 .text h2 { color: var(--text-heading) !important; }
+.site-blocks-1 .divider::after { background: var(--border); }
+
+/* About values cards */
+.p-4.bg-white.rounded.shadow-sm,
+.p-4.rounded.shadow-sm {
+  background-color: var(--bg-surface) !important;
+}
+
+/* Stats section */
+.site-section.bg-light .display-4 { color: var(--accent) !important; }
+
+/* ── Tables ──────────────────────────────────────────────── */
+.table { color: var(--text-base); }
+.table td, .table th    { border-color: var(--border) !important; color: var(--text-base); }
+.table-bordered         { border-color: var(--border) !important; }
+.table thead.bg-light th { background-color: var(--bg-muted) !important; color: var(--text-heading) !important; }
+.site-blocks-table thead th { color: var(--text-heading); }
+.site-blocks-table tbody tr:first-child td { border-top-color: var(--accent) !important; }
+
+/* ── Alerts ──────────────────────────────────────────────── */
+.alert-success    { background: rgba(46,184,114,.15); border-color: var(--success); color: #a8f0cb; }
+.alert-danger,
+.alert-error      { background: rgba(224,92,106,.15); border-color: var(--danger);  color: #f0b8bc; }
+.alert-warning    { background: rgba(255,193,7,.1);   border-color: #ffc107;        color: #ffe083; }
+.alert-info       { background: rgba(121,113,234,.15); border-color: var(--accent); color: #c4c0f8; }
+.alert .close     { color: var(--text-muted); }
+
+/* ── Badges ──────────────────────────────────────────────── */
+.badge-success { background-color: var(--success); }
+.badge-warning { background-color: #e6a817; color: #000; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.site-footer {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border) !important;
+}
+.site-footer ul li a    { color: var(--text-muted); }
+.site-footer ul li a:hover { color: var(--accent); }
+.site-footer .text-muted { color: var(--text-muted) !important; }
+.site-footer p           { color: var(--text-muted); }
+
+/* ── Pagination (site-block-27) ─────────────────────────── */
+.site-block-27 ul li a,
+.site-block-27 ul li span {
+  border-color: var(--border);
+  color: var(--text-muted);
+  background: var(--bg-surface);
+}
+.site-block-27 ul li.active a,
+.site-block-27 ul li.active span {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ── Mobile menu ─────────────────────────────────────────── */
+.site-mobile-menu {
+  background-color: var(--bg-surface);
+  box-shadow: -10px 0 30px rgba(0,0,0,.6);
+}
+.site-mobile-menu .site-nav-wrap a { color: var(--text-base); }
+.site-mobile-menu .site-nav-wrap a:hover { color: var(--accent); }
+
+/* ── Hero / cover sections ───────────────────────────────── */
+.site-hero,
+.site-blocks-cover {
+  position: relative;
+}
+.site-hero::after,
+.site-blocks-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,17,23,.85) 0%, rgba(121,113,234,.25) 100%);
+  z-index: 0;
+}
+.site-hero .container,
+.site-blocks-cover .container { position: relative; z-index: 1; }
+.site-hero h1,
+.site-blocks-cover h1 { color: #fff !important; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+.site-hero .sub-text  { color: rgba(255,255,255,.8); }
+
+/* ── Contact page specifics ──────────────────────────────── */
+.block-5 ul li            { color: var(--text-base); }
+.block-5 ul li a          { color: var(--text-base); }
+.block-5 ul li a:hover    { color: var(--accent); }
+.block-5 ul li::before    { color: var(--accent); }
+.social-icons .btn-outline-secondary {
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Section headings with purple bar ───────────────────── */
+.section-title            { color: var(--text-heading) !important; }
+.site-section-heading     { color: var(--text-heading) !important; }
+
+/* ── Profile page ────────────────────────────────────────── */
+.border.p-4.rounded .text-black { color: var(--text-heading) !important; }
+
+/* ── Price colour ────────────────────────────────────────── */
+.text-primary { color: var(--accent) !important; }
+
+/* ── Scrollbar (Webkit) ──────────────────────────────────── */
+::-webkit-scrollbar             { width: 8px; background: var(--bg-base); }
+::-webkit-scrollbar-thumb       { background: var(--bg-elevated); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection       { background: var(--accent); color: #fff; }
+::-moz-selection  { background: var(--accent); color: #fff; }

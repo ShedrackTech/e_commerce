@@ -1,0 +1,57 @@
+{% extends "shop/base/base.html" %}
+{% load static %}
+{% block title %}Reply to {{ obj.name }}{% endblock %}
+
+{% block content %}
+<div style="max-width:700px;">
+
+  <h1>Reply to {{ obj.name }}</h1>
+
+  {# ── Original message ── #}
+  <div style="background:#f8f9fa;border-left:4px solid #007bff;padding:1rem 1.25rem;margin-bottom:1.5rem;border-radius:4px;">
+    <p style="margin:0 0 .25rem;"><strong>From:</strong> {{ obj.name }} &lt;{{ obj.email }}&gt;</p>
+    <p style="margin:0 0 .25rem;"><strong>Subject:</strong> {{ obj.get_subject_display }}</p>
+    <p style="margin:0 0 .75rem;"><strong>Received:</strong> {{ obj.created_at|date:"d M Y, H:i" }}</p>
+    <hr style="margin:.75rem 0;">
+    <p style="white-space:pre-wrap;margin:0;">{{ obj.message }}</p>
+  </div>
+
+  {# ── Reply form ── #}
+  <form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom:1rem;">
+      <label for="reply_body" style="display:block;font-weight:600;margin-bottom:.4rem;">
+        Your Reply <span style="color:red;">*</span>
+      </label>
+      <textarea
+        id="reply_body"
+        name="reply_body"
+        rows="10"
+        style="width:100%;padding:.5rem;font-size:.95rem;border:1px solid #ccc;border-radius:4px;resize:vertical;"
+        placeholder="Type your reply here…"
+        required>{{ reply_body }}</textarea>
+    </div>
+
+    <p style="color:#6c757d;font-size:.875rem;margin-bottom:1rem;">
+      This will be sent to <strong>{{ obj.email }}</strong> from
+      <strong>{{ DEFAULT_FROM_EMAIL }}</strong>.
+    </p>
+
+    <div style="display:flex;gap:.75rem;">
+      <input type="submit" value="📨 Send Reply" class="default"
+             style="padding:.5rem 1.5rem;font-size:1rem;">
+      <a href="{{ change_url }}" class="button cancel-link"
+         style="padding:.5rem 1rem;font-size:1rem;">Cancel</a>
+    </div>
+  </form>
+
+  {% if obj.is_replied %}
+  <div style="margin-top:2rem;padding:1rem;background:#d4edda;border-radius:4px;border-left:4px solid #28a745;">
+    <strong>Previously replied</strong> on {{ obj.replied_at|date:"d M Y, H:i" }}
+    {% if obj.replied_by %}by {{ obj.replied_by.get_full_name|default:obj.replied_by.username }}{% endif %}:
+    <p style="white-space:pre-wrap;margin:.5rem 0 0;">{{ obj.reply }}</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

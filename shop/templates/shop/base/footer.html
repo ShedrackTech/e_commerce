@@ -1,0 +1,128 @@
+
+<footer class="site-footer border-top">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="footer-heading mb-4">Navigations</h3>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="{% url 'shop:product_list' %}">Shop Online</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop:about' %}">Features</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'cart:cart_detail' %}">Shopping Cart</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop:product_list' %}">Store</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'shop:profile' %}">My Account</a>
+                                {% else %}
+                                    <a href="{% url 'shop:register' %}">Create Account</a>
+                                {% endif %}
+                            </li>
+                            <li>
+                                <a href="{% url 'order:order_list' %}">My Orders</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop:contact' %}">Shipping Info</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="{% url 'shop:about' %}">About Us</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop:contact' %}">Contact</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop:contact' %}">Help &amp; FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <h3 class="footer-heading mb-4">Promo</h3>
+                <a href="{% url 'shop:product_list' %}" class="block-6">
+                    {% load static %}
+                    <img src="{% static 'images/hero.jpg' %}"
+                         alt="Current promotion"
+                         class="img-fluid rounded mb-4">
+                    <h3 class="font-weight-light mb-0">Finding Your Perfect Style</h3>
+                    <p>Shop our latest collection &mdash; new arrivals weekly.</p>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="block-5 mb-5">
+                    <h3 class="footer-heading mb-4">Contact Info</h3>
+                    <ul class="list-unstyled">
+                        <li class="address">
+                            203 Fake St. Mountain View,
+                            San Francisco, California, USA
+                        </li>
+                        <li class="phone">
+                            <a href="tel:+23923929210"</a>
+                        </li>
+                        <li class="email">
+                            <a href="mailto:emailaddress@domain.com">
+                                shedrackugwu01@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {# Social icons #}
+                <div class="social-icons">
+                    <a href="#" title="Facebook"  class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                    <a href="#" title="Twitter"   class="pl-0 pr-3"><span class="icon-twitter"></span></a>
+                    <a href="#" title="Instagram" class="pl-0 pr-3"><span class="icon-instagram"></span></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row pt-4 mt-4 border-top">
+            <div class="col-md-6 text-left">
+                <p class="mb-0 text-muted small">
+                    &copy; {% now "Y" %} Django-Ecommerce. All rights reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="{% url 'shop:about' %}" class="text-muted small">About</a>
+                    </li>
+                    <li class="list-inline-item ml-3">
+                        <a href="{% url 'shop:contact' %}" class="text-muted small">Contact</a>
+                    </li>
+                    <li class="list-inline-item ml-3">
+                          <a href="{% url 'shop:privacy' %}" class="text-muted small">Privacy Policy</a>  Add a 'shop:privacy' url for a privacy policy page, or remove.
+                        <a href="#" class="text-muted small">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</footer>

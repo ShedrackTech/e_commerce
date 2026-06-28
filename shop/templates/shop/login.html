@@ -1,0 +1,176 @@
+{% extends "shop/base/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login — Django-Ecommerce{% endblock %}
+
+{% block content %}
+
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="{% url 'shop:product_list' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">Login</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-5 mb-5 mb-md-0" data-aos="fade-up">
+                <h2 class="h3 text-black mb-4">Log In to Your Account</h2>
+
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            <p class="mb-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {# Redirect after login #}
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
+
+                    {# Username / Email #}
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}" class="text-black">
+                            Email or Username <span class="text-danger">*</span>
+                        </label>
+                        <input type="text"
+                               id="{{ form.username.id_for_label }}"
+                               name="username"
+                               value="{{ form.username.value|default:'' }}"
+                               autofocus
+                               class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                               placeholder="your@email.com">
+                        {% for error in form.username.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    {# Password #}
+                    <div class="form-group">
+                        <label for="{{ form.password.id_for_label }}" class="text-black">
+                            Password <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="password"
+                                   id="{{ form.password.id_for_label }}"
+                                   name="password"
+                                   class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+                                   placeholder="Your password">
+                            {# Toggle show/hide password #}
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="togglePassword"
+                                        title="Show / hide password">
+                                    <span class="icon icon-remove_red_eye"></span>
+                                </button>
+                            </div>
+                            {% for error in form.password.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {# Remember me + forgot password #}
+                    <div class="form-group d-flex justify-content-between align-items-center">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"
+                                   class="custom-control-input"
+                                   id="rememberMe"
+                                   name="remember_me">
+                            <label class="custom-control-label text-black" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="{% url 'shop:password_reset' %}"
+                           class="text-primary small">Forgot Password?</a>
+                    </div>
+
+                    {# Submit #}
+                    <div class="form-group mt-4">
+                        <input type="submit"
+                               value="Log In"
+                               class="btn btn-primary btn-md py-3 px-5 btn-block">
+                    </div>
+
+                    <p class="text-center text-black mt-3">
+                        Don&rsquo;t have an account?
+                        <a href="{% url 'shop:register' %}" class="text-primary font-weight-bold">Create one free</a>
+                    </p>
+
+                </form>
+            </div>
+
+            <div class="col-md-4 ml-md-auto" data-aos="fade-up" data-aos-delay="100">
+                <div class="border p-4 rounded mb-3">
+                    <h3 class="text-black h5 text-uppercase mb-4">New Customer?</h3>
+                    <p class="text-muted small">
+                        Create a free account and enjoy faster checkout,
+                        order tracking, exclusive member discounts, and more.
+                    </p>
+                    <a href="{% url 'shop:register' %}"
+                       class="btn btn-outline-primary btn-sm btn-block py-3">
+                        Create an Account
+                    </a>
+                </div>
+
+                <div class="border p-4 rounded">
+                    <h3 class="text-black h6 text-uppercase mb-3">Secure Login</h3>
+                    <ul class="list-unstyled text-muted small mb-0">
+                        <li class="d-flex mb-2">
+                            <span class="icon icon-lock text-primary mr-2 mt-1"></span>
+                            <span>Your password is never stored in plaintext.</span>
+                        </li>
+                        <li class="d-flex mb-2">
+                            <span class="icon icon-lock text-primary mr-2 mt-1"></span>
+                            <span>All connections are encrypted over HTTPS.</span>
+                        </li>
+                        <li class="d-flex">
+                            <span class="icon icon-lock text-primary mr-2 mt-1"></span>
+                            <span>Sessions automatically expire after 14 days.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    (function () {
+        var btn   = document.getElementById('togglePassword');
+        var input = document.getElementById('{{ form.password.id_for_label }}');
+        if (btn && input) {
+            btn.addEventListener('click', function () {
+                input.type = input.type === 'password' ? 'text' : 'password';
+            });
+        }
+    })();
+</script>
+{% endblock %}
+
+{% endblock %}

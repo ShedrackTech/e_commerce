@@ -1,0 +1,45 @@
+{% extends 'shop/base/base.html' %}
+
+{% block title %}Privacy Policy - Django Ecommerce{% endblock %}
+
+{% block content %}
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="h2 mb-4">Privacy Policy</h1>
+                <p class="text-muted">Last updated: June 28, 2026</p>
+
+                <p>Welcome to Django Ecommerce. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and make purchases.</p>
+
+                <h3 class="mt-5">Information We Collect</h3>
+                <p>We may collect personal information that you provide to us, such as your name, email address, postal address, phone number, and payment information when you place an order or contact us.</p>
+                <p>We also automatically collect certain information about your device and browsing activity, including IP address, browser type, and usage data through cookies and similar technologies.</p>
+
+                <h3 class="mt-5">How We Use Your Information</h3>
+                <p>We use the information we collect to process your orders, manage your account, communicate with you about your purchases, improve our website and services, and comply with legal obligations.</p>
+
+                <h3 class="mt-5">Sharing of Information</h3>
+                <p>We do not sell your personal information. We may share your information with trusted third-party service providers who assist us in operating our website and conducting our business, such as payment processors and shipping companies. These parties are contractually obligated to keep your information secure.</p>
+
+                <h3 class="mt-5">Cookies and Tracking Technologies</h3>
+                <p>Our website uses cookies to enhance your shopping experience, analyze site traffic, and personalize content. You can manage or disable cookies through your browser settings at any time.</p>
+
+                <h3 class="mt-5">Data Security</h3>
+                <p>We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the internet or electronic storage is 100% secure.</p>
+
+                <h3 class="mt-5">Your Rights</h3>
+                <p>You have the right to access, update, or delete your personal information. If you would like to exercise these rights, please contact us using the details below.</p>
+
+                <h3 class="mt-5">Changes to This Policy</h3>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.</p>
+
+                <div class="mt-5">
+                    <h3>Contact Us</h3>
+                    <p>If you have any questions or concerns about this Privacy Policy, please feel free to <a href="{% url 'shop:contact' %}">contact us</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

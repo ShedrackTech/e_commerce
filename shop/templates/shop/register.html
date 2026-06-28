@@ -1,0 +1,220 @@
+{% extends "shop/base/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create Account — Django-Ecommerce{% endblock %}
+
+{% block content %}
+
+{# ── Breadcrumb ─────────────────────────────────────────────────────────────── #}
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="{% url 'shop:product_list' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">Create Account</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# ── Main Section ───────────────────────────────────────────────────────────── #}
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            {# ── Left: Form ──────────────────────────────────────────────── #}
+            <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
+                <h2 class="h3 text-black mb-4">Create Your Account</h2>
+
+                {# Django messages #}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {# Name row #}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.first_name.id_for_label }}" class="text-black">
+                                First Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                   id="{{ form.first_name.id_for_label }}"
+                                   name="first_name"
+                                   value="{{ form.first_name.value|default:'' }}"
+                                   class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                                   placeholder="e.g. John">
+                            {% for error in form.first_name.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.last_name.id_for_label }}" class="text-black">
+                                Last Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                   id="{{ form.last_name.id_for_label }}"
+                                   name="last_name"
+                                   value="{{ form.last_name.value|default:'' }}"
+                                   class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                                   placeholder="e.g. Doe">
+                            {% for error in form.last_name.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {# Username #}
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}" class="text-black">
+                            Username <span class="text-danger">*</span>
+                        </label>
+                        <input type="text"
+                               id="{{ form.username.id_for_label }}"
+                               name="username"
+                               value="{{ form.username.value|default:'' }}"
+                               class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                               placeholder="Choose a username">
+                        {% for error in form.username.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    {# Email #}
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}" class="text-black">
+                            Email Address <span class="text-danger">*</span>
+                        </label>
+                        <input type="email"
+                               id="{{ form.email.id_for_label }}"
+                               name="email"
+                               value="{{ form.email.value|default:'' }}"
+                               class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                               placeholder="your@email.com">
+                        {% for error in form.email.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    {# Passwords row #}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.password1.id_for_label }}" class="text-black">
+                                Password <span class="text-danger">*</span>
+                            </label>
+                            <input type="password"
+                                   id="{{ form.password1.id_for_label }}"
+                                   name="password1"
+                                   class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+                                   placeholder="Min. 8 characters">
+                            {% for error in form.password1.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.password2.id_for_label }}" class="text-black">
+                                Confirm Password <span class="text-danger">*</span>
+                            </label>
+                            <input type="password"
+                                   id="{{ form.password2.id_for_label }}"
+                                   name="password2"
+                                   class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+                                   placeholder="Repeat password">
+                            {% for error in form.password2.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {# Newsletter #}
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"
+                                   id="{{ form.newsletter.id_for_label }}"
+                                   name="newsletter"
+                                   class="custom-control-input"
+                                   {% if form.newsletter.value %}checked{% endif %}>
+                            <label class="custom-control-label text-black"
+                                   for="{{ form.newsletter.id_for_label }}">
+                                Subscribe to our newsletter for deals &amp; updates
+                            </label>
+                        </div>
+                    </div>
+
+                    {# Submit #}
+                    <div class="form-group mt-4">
+                        <input type="submit"
+                               value="Create Account"
+                               class="btn btn-primary btn-md py-3 px-5 btn-block">
+                    </div>
+
+                    <p class="text-center text-black mt-3">
+                        Already have an account?
+                        <a href="{% url 'shop:login' %}" class="text-primary font-weight-bold">Log In</a>
+                    </p>
+
+                </form>
+            </div>
+
+            {# ── Right: Benefits panel ───────────────────────────────────── #}
+            <div class="col-md-4 ml-md-auto" data-aos="fade-up" data-aos-delay="100">
+                <div class="border p-4 rounded">
+                    <h3 class="text-black h5 text-uppercase mb-4">Why Create an Account?</h3>
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-3">
+                            <span class="icon icon-check_circle text-primary mr-3 mt-1"></span>
+                            <div>
+                                <strong class="text-black d-block">Track Your Orders</strong>
+                                <span class="text-muted small">Check the real-time status of every order.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <span class="icon icon-check_circle text-primary mr-3 mt-1"></span>
+                            <div>
+                                <strong class="text-black d-block">Faster Checkout</strong>
+                                <span class="text-muted small">Saved address means one-click checkout.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <span class="icon icon-check_circle text-primary mr-3 mt-1"></span>
+                            <div>
+                                <strong class="text-black d-block">Exclusive Coupons</strong>
+                                <span class="text-muted small">Members get early access to sales and discounts.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <span class="icon icon-check_circle text-primary mr-3 mt-1"></span>
+                            <div>
+                                <strong class="text-black d-block">Order History</strong>
+                                <span class="text-muted small">Reorder your favourite products in seconds.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                {# Password requirements helper #}
+                <div class="border p-4 rounded mt-3">
+                    <h3 class="text-black h6 text-uppercase mb-3">Password Requirements</h3>
+                    <ul class="list-unstyled text-muted small mb-0">
+                        <li class="mb-1"><span class="icon icon-arrow_right_alt mr-1"></span> At least 8 characters</li>
+                        <li class="mb-1"><span class="icon icon-arrow_right_alt mr-1"></span> Cannot be entirely numeric</li>
+                        <li class="mb-1"><span class="icon icon-arrow_right_alt mr-1"></span> Cannot be similar to your username</li>
+                        <li><span class="icon icon-arrow_right_alt mr-1"></span> Cannot be a commonly used password</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
