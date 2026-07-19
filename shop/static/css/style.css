@@ -751,3 +751,81 @@ a {
   width: 120px;
   border-radius: 50%;
   margin-bottom: 20px; }
+
+/* Register button hover visibility fix */
+.register-btn {
+    transition: all 0.3s ease !important;
+}
+
+.register-btn:hover {
+    font-size: 1rem !important;
+    color: #ffffff !important;
+    background-color: #6c63ff !important;
+    border-color: #6c63ff !important;
+    transform: scale(1.05);
+}
+
+.btn-outline-primary.register-btn:hover {
+    color: #7971ea !important;
+    background-color: transparent !important;
+    border-color: #7971ea !important;
+    font-size: 1rem !important;
+}
+
+/* Mobile register button */
+.register-btn-mobile {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.register-btn-mobile:hover {
+    font-size: 1.1rem !important;
+    color: #ffffff !important;
+    background-color: #6c63ff !important;
+    transform: scale(1.02);
+}
+
+/* Mobile menu improvements */
+.site-mobile-menu .site-nav-wrap > li > a:not(.btn) {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f3f3f4;
+}
+
+.site-mobile-menu .site-nav-wrap > li:last-child > a {
+    border-bottom: none;
+}
+
+.site-mobile-menu .site-nav-wrap > li > a .icon {
+    font-size: 18px;
+}
+
+/* Mobile menu account section header */
+.site-mobile-menu .site-nav-wrap > li.mt-4 {
+    padding-top: 15px;
+}
+
+/* Ensure mobile menu cart count is visible */
+.site-mobile-menu .count {
+    background: #7971ea;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Fix for inline-block items on mobile */
+@media (max-width: 767px) {
+    .d-none.d-md-inline-block {
+        display: none !important;
+    }
+    
+    .d-inline-block.d-md-none {
+        display: inline-block !important;
+    }
+}

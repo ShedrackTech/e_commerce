@@ -1,3 +1,17 @@
+<div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <button class="js-menu-toggle mobile-close-btn" aria-label="Close menu">
+                <span class="close-bar"></span>
+                <span class="close-bar"></span>
+            </button>
+        </div>
+        <div class="site-mobile-menu-logo">
+            <a href="{% url 'shop:product_list' %}">Django-Ecommerce</a>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
 
 <header class="site-navbar" role="banner">
     <div class="site-navbar-top">
@@ -25,7 +39,7 @@
                     <div class="site-top-icons">
                         <ul>
                             {% if user.is_authenticated %}
-                                <li class="dropdown" style="display:inline-block;position:relative;">
+                                <li class="dropdown d-none d-md-inline-block" style="display:inline-block;position:relative;">
                                     <a href="#"
                                        id="userMenuToggle"
                                        class="dropdown-toggle site-cart"
@@ -33,8 +47,6 @@
                                        aria-haspopup="true"
                                        aria-expanded="false"
                                        title="{{ user.get_full_name|default:user.email }}">
-
-                                        {# Initials badge — mirrors the profile avatar style #}
                                         <span class="rounded-circle bg-primary text-white d-inline-flex
                                                      align-items-center justify-content-center font-weight-bold"
                                               style="width:32px;height:32px;font-size:.75rem;vertical-align:middle;">
@@ -45,8 +57,6 @@
                                     <div class="dropdown-menu dropdown-menu-right"
                                          aria-labelledby="userMenuToggle"
                                          style="min-width:200px;">
-
-                                        {# User info header #}
                                         <div class="px-4 py-2 border-bottom">
                                             <p class="mb-0 font-weight-bold text-black small">
                                                 {{ user.get_full_name|default:user.username }}
@@ -56,7 +66,6 @@
                                                 {{ user.email }}
                                             </p>
                                         </div>
-
                                         <a class="dropdown-item" href="{% url 'shop:profile' %}">
                                             <span class="icon icon-person mr-2 text-primary"></span>
                                             My Profile
@@ -69,7 +78,6 @@
                                             <span class="icon icon-lock mr-2 text-primary"></span>
                                             Change Password
                                         </a>
-
                                         {% if user.is_staff %}
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{% url 'admin:index' %}">
@@ -77,29 +85,32 @@
                                                 Admin Panel
                                             </a>
                                         {% endif %}
-
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger"
-                                           href="{% url 'shop:logout' %}">
-                                            <span class="icon icon-power_settings_new mr-2"></span>
-                                            Logout
-                                        </a>
+                                        <form method="post" action="{% url 'shop:logout' %}">
+                                            {% csrf_token %}
+                                            <button type="submit"
+                                                    class="dropdown-item text-danger"
+                                                    style="background:none;border:none;width:100%;text-align:left;cursor:pointer;">
+                                                <span class="icon icon-power_settings_new mr-2"></span>
+                                                Logout
+                                            </button>
+                                        </form>
                                     </div>
                                 </li>
 
                             {% else %}
-                                <li style="display:inline-block;">
+                                <li class="d-none d-md-inline-block" style="display:inline-block;">
                                     <a href="{% url 'shop:login' %}"
                                        title="Login"
-                                       class="btn btn-sm btn-outline-primary px-3"
+                                       class="btn btn-sm btn-outline-primary px-3 register-btn"
                                        style="font-size:.8rem;border-radius:20px;vertical-align:middle;">
                                         Login
                                     </a>
                                 </li>
-                                <li style="display:inline-block;margin-left:6px;">
+                                <li class="d-none d-md-inline-block" style="display:inline-block;margin-left:6px;">
                                     <a href="{% url 'shop:register' %}"
                                        title="Register"
-                                       class="btn btn-sm btn-primary px-3"
+                                       class="btn btn-sm btn-primary px-3 register-btn"
                                        style="font-size:.8rem;border-radius:20px;vertical-align:middle;">
                                         Register
                                     </a>
@@ -107,7 +118,7 @@
                             {% endif %}
 
                             {# Cart icon #}
-                            <li>
+                            <li class="d-none d-md-inline-block">
                                 <a href="{% url 'cart:cart_detail' %}" class="site-cart">
                                     <span class="icon icon-shopping_cart"></span>
                                     <span class="count">
@@ -122,11 +133,13 @@
                                 </a>
                             </li>
 
-                            {# Mobile menu toggle #}
+                            {# Mobile menu toggle — now a <button> with pure CSS bars #}
                             <li class="d-inline-block d-md-none ml-md-0">
-                                <a href="#" class="site-menu-toggle js-menu-toggle">
+                                <button class="site-menu-toggle js-menu-toggle"
+                                        aria-label="Toggle menu"
+                                        aria-expanded="false">
                                     <span class="icon-menu"></span>
-                                </a>
+                                </button>
                             </li>
 
                         </ul>
@@ -146,22 +159,88 @@
                 <li><a href="{% url 'shop:contact' %}">Contact</a></li>
 
                 {% if user.is_authenticated %}
+                    <li><a href="{% url 'shop:profile' %}">My Profile</a></li>
                     <li>
-                        <a href="{% url 'shop:profile' %}">My Profile</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'shop:logout' %}">Logout</a>
+                        <form method="post" action="{% url 'shop:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    style="background:none;border:none;padding:0;cursor:pointer;color:inherit;font:inherit;">
+                                Logout
+                            </button>
+                        </form>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="{% url 'shop:login' %}">Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'shop:register' %}">Register</a>
-                    </li>
+                    <li><a href="{% url 'shop:login' %}">Login</a></li>
+                    <li><a href="{% url 'shop:register' %}">Register</a></li>
                 {% endif %}
             </ul>
         </div>
     </nav>
 
 </header>
+
+{# ── Hidden mobile extras — Django renders these, JS appends them ── #}
+<ul id="mobile-menu-extras" style="display:none;">
+    <li class="mt-4 pt-4 border-top">
+        <span class="text-uppercase text-muted"
+              style="font-size:12px;letter-spacing:.1em;padding-left:20px;display:block;margin-bottom:10px;">
+            Account
+        </span>
+    </li>
+    {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'shop:profile' %}">
+                <span class="icon icon-person mr-2"></span>My Profile
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'order:order_list' %}">
+                <span class="icon icon-shopping_cart mr-2"></span>My Orders
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'shop:password_change' %}">
+                <span class="icon icon-lock mr-2"></span>Change Password
+            </a>
+        </li>
+        {% if user.is_staff %}
+        <li>
+            <a href="{% url 'admin:index' %}">
+                <span class="icon icon-settings mr-2"></span>Admin Panel
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            <form method="post" action="{% url 'shop:logout' %}">
+                {% csrf_token %}
+                <button type="submit"
+                        class="text-danger"
+                        style="background:none;border:none;padding:0;cursor:pointer;font:inherit;display:flex;align-items:center;">
+                    <span class="icon icon-power_settings_new mr-2"></span>Logout
+                </button>
+            </form>
+        </li>
+    {% else %}
+        <li style="padding:10px 20px;">
+            <a href="{% url 'shop:login' %}"
+               class="btn btn-outline-primary btn-block register-btn"
+               style="border-radius:20px;">Login</a>
+        </li>
+        <li style="padding:10px 20px;">
+            <a href="{% url 'shop:register' %}"
+               class="btn btn-primary btn-block register-btn-mobile"
+               style="border-radius:20px;">Register</a>
+        </li>
+    {% endif %}
+    <li class="mt-4 pt-4 border-top">
+        <a href="{% url 'cart:cart_detail' %}"
+           style="display:flex;align-items:center;justify-content:space-between;">
+            <span><span class="icon icon-shopping_cart mr-2"></span>Cart</span>
+            <span class="count" style="position:static;margin:0;">
+                {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}{{ total_items }}{% else %}0{% endif %}
+                {% endwith %}
+            </span>
+        </a>
+    </li>
+</ul>

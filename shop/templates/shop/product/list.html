@@ -17,20 +17,24 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-9 order-2">
-                <div class="row mb-5">
+                <div class="product-grid row">
                     {% for product in products %}
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                        <div class="block-4 text-center border">
-                            <figure class="block-4-image">
-                                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" 
-                                        alt="Image placeholder" class="img-fluid" style="height: 10vw;"></a>
-                            </figure>
-                            <div class="block-4-text p-4">
-                                <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
-                                <p class="mb-0">{{ product.description }}</p>
-                                <p class="text-primary font-weight-bold">${{ product.price }}</p>
+                    <div class="col-6 col-lg-4 mb-3 product-grid-item" data-aos="fade-up">
+                        <a href="{{ product.get_absolute_url }}" class="product-card-link">
+                            <div class="block-4 border product-card">
+                                <figure class="block-4-image product-card-image">
+                                    <img src="{{ product.image.url }}" 
+                                         alt="{{ product.name }}"
+                                         class="img-fluid product-card-img"
+                                         loading="lazy">
+                                </figure>
+                                <div class="block-4-text product-card-body">
+                                    <h3 class="product-card-name">{{ product.name }}</h3>
+                                    <p class="product-card-desc">{{ product.description }}</p>
+                                    <p class="product-card-price">${{ product.price }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     {% endfor %}
                 </div>
