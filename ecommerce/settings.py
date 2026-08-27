@@ -86,16 +86,33 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.postgresql',
-'NAME': config('DB_NAME'),
-'USER': config('DB_USER'),
-'PASSWORD': config('DB_PASSWORD'),
-'HOST': config('DB_HOST', default='localhost'),
-'PORT': config('DB_PORT', default='5432'),
-}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME', default='postgres'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='6543'),
+        'OPTIONS': {'sslmode': config('DB_SSLMODE', default='prefer')},
+    }
 }
 
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+AWS_ACCESS_KEY_ID = config('SUPABASE_S3_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = config('SUPABASE_S3_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = config('SUPABASE_S3_BUCKET', default='media')
+AWS_S3_ENDPOINT_URL = config('SUPABASE_S3_ENDPOINT')  # e.g. https://<project-ref>.supabase.co/storage/v1/s3
+AWS_S3_REGION_NAME = config('SUPABASE_S3_REGION', default='us-east-1')
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

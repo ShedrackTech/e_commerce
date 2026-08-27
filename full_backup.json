@@ -1,0 +1,660 @@
+[
+{
+  "model": "order.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 1,
+    "price": "70.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "shop.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$THg4pdDPUrU0Oxj2t4b813$pscqfYdhmI5U+xTFApGVZbtxkBwqr1NLMRD4IeEng7s=",
+    "last_login": "2026-07-07T19:45:16.462Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Shedrack",
+    "last_name": "Ugwu",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-06-25T15:28:32.634Z",
+    "email": "shedrackugwu01@gmail.com",
+    "phone": "07034757506",
+    "avatar": "avatars/download_1.jfif",
+    "address": "Before Nru Boys",
+    "city": "Nsukka",
+    "postal_code": "110011",
+    "country": "Nigeria",
+    "newsletter": true,
+    "created_at": "2026-06-25T15:28:34.620Z",
+    "updated_at": "2026-06-25T17:49:16.180Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 1,
+  "fields": {
+    "name": "Men's Shoes",
+    "slug": "men_shoes"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 2,
+  "fields": {
+    "name": "Men's Fashion",
+    "slug": "mens-fashion"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 3,
+  "fields": {
+    "name": "Women's Shoes",
+    "slug": "womens-shoes"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 4,
+  "fields": {
+    "name": "Women's Bags",
+    "slug": "womens-bags"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 5,
+  "fields": {
+    "name": "Women's Clothes",
+    "slug": "womens-clothes"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 6,
+  "fields": {
+    "name": "Premium Lace Front Wigs",
+    "slug": "premium-lace-front-wigs"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 7,
+  "fields": {
+    "name": "Men's Accessories",
+    "slug": "mens-accessories"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 8,
+  "fields": {
+    "name": "Women's Accessories",
+    "slug": "womens-accessories"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Men's Premium Classic Wheat Lace-Up Work Boots",
+    "slug": "timber-land",
+    "image": "products/2026/06/29/work_boots.jpg",
+    "description": "Built for durability and everyday comfort, these premium wheat-colored lace-up work boots combine rugged performance with timeless style. Featuring a sturdy rubber outsole, padded collar, and premium leather-look upper, they're ideal for work, outdoor adventures, and casual everyday wear.",
+    "price": "59.99",
+    "available": true,
+    "created": "2026-06-25T17:43:20.103Z",
+    "updated": "2026-06-29T19:40:25.154Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Men's Premium Black Chunky Leather Loafers with Horsebit Detail",
+    "slug": "mens-premium-black-chunky-leather-loafers-with-horsebit-detail",
+    "image": "products/2026/06/29/shoe.jpg",
+    "description": "Upgrade your footwear collection with these premium black chunky leather loafers. Designed with a modern silhouette and elegant horsebit hardware, these slip-on shoes combine luxury, comfort, and durability. Perfect for business, formal occasions, or casual outings, they provide excellent support with a durable anti-slip rubber sole and cushioned insole for all-day comfort.",
+    "price": "30.00",
+    "available": true,
+    "created": "2026-06-29T19:18:41.889Z",
+    "updated": "2026-06-29T19:28:21.531Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Men's Premium Long Sleeve Button-Up Casual Shirt – Dark Gray",
+    "slug": "mens-premium-long-sleeve-button-up-casual-shirt-dark-gray",
+    "image": "products/2026/06/29/converted_image_zaUzPXW.jpg",
+    "description": "Stay stylish and comfortable with this premium men's long sleeve button-up shirt. Designed with a modern fit, classic collar, and dual flap chest pockets, this versatile shirt is perfect for casual outings, office wear, and semi-formal occasions. Pair it with jeans, chinos, or trousers for a clean, sophisticated look.",
+    "price": "24.99",
+    "available": true,
+    "created": "2026-06-29T19:33:10.530Z",
+    "updated": "2026-06-29T19:35:57.166Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "name": "Men's Premium Long Sleeve Button-Up Casual Shirt – Sage Green",
+    "slug": "mens-premium-long-sleeve-button-up-casual-shirt-sage-green",
+    "image": "products/2026/06/29/jacket.jpg",
+    "description": "Stay stylish and comfortable with this premium men's long sleeve button-up shirt. Designed with a modern fit, classic collar, and dual flap chest pockets, this versatile shirt is perfect for casual outings, office wear, and semi-formal occasions. Pair it with jeans, chinos, or trousers for a clean, sophisticated look.",
+    "price": "24.99",
+    "available": true,
+    "created": "2026-06-29T19:35:33.548Z",
+    "updated": "2026-06-30T12:11:27.718Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 7,
+  "fields": {
+    "category": 3,
+    "name": "Women's Elegant Rose Gold Strappy High Heel Sandals",
+    "slug": "womens-elegant-rose-gold-strappy-high-heel-sandals",
+    "image": "products/2026/06/29/ladies_shoes.jpg",
+    "description": "Step into elegance with these stunning rose gold strappy high heel sandals. Featuring a sleek open-toe design, adjustable ankle strap, and slim stiletto heel, these sandals are the perfect choice for weddings, parties, evening events, and special occasions.",
+    "price": "44.99",
+    "available": true,
+    "created": "2026-06-29T19:55:47.902Z",
+    "updated": "2026-06-29T19:56:18.673Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 8,
+  "fields": {
+    "category": 3,
+    "name": "Women's Elegant Red Block Heel Ankle Strap Sandals",
+    "slug": "womens-elegant-red-block-heel-ankle-strap-sandals",
+    "image": "products/2026/06/29/ladies_shoes1.jpg",
+    "description": "Add a bold touch to your wardrobe with these elegant red block heel sandals. Designed with a soft suede-like finish, open-toe silhouette, and adjustable ankle strap, they provide the perfect combination of style, comfort, and stability for every special occasion.",
+    "price": "39.99",
+    "available": true,
+    "created": "2026-06-29T19:57:50.223Z",
+    "updated": "2026-06-29T19:57:50.223Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "name": "Ladies' Fashion Flat Slide Sandals",
+    "slug": "ladies-fashion-flat-slide-sandals",
+    "image": "products/2026/06/30/ladies_shoes2.jpg",
+    "description": "Women's fashionable flat slide sandals with a monogram-inspired upper, metallic emblem detail, cushioned footbed, and lightweight slip-on design. Stylish, comfortable, and perfect for everyday casual wear.",
+    "price": "39.95",
+    "available": true,
+    "created": "2026-06-30T16:40:02.759Z",
+    "updated": "2026-06-30T16:40:02.759Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 10,
+  "fields": {
+    "category": 4,
+    "name": "Ladies' Premium Designer-Inspired Tote Handbag",
+    "slug": "ladies-premium-designer-inspired-tote-handbag",
+    "image": "products/2026/06/30/ladies_bags.jpg",
+    "description": "Make a bold fashion statement with this elegant ladies' premium tote handbag. Designed with a spacious interior and a sophisticated monogram-inspired print, this handbag combines luxury-inspired style with everyday functionality.",
+    "price": "79.87",
+    "available": true,
+    "created": "2026-06-30T16:42:14.353Z",
+    "updated": "2026-06-30T16:42:14.353Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 11,
+  "fields": {
+    "category": 4,
+    "name": "Ladies' Elegant Quilted Top Handle Handbag",
+    "slug": "ladies-elegant-quilted-top-handle-handbag",
+    "image": "products/2026/06/30/ladies_bags1.jpg",
+    "description": "Elevate your everyday style with this elegant quilted top handle handbag, crafted for women who appreciate timeless fashion and functionality.",
+    "price": "99.99",
+    "available": true,
+    "created": "2026-06-30T16:44:46.988Z",
+    "updated": "2026-06-30T16:44:46.988Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 12,
+  "fields": {
+    "category": 4,
+    "name": "Ladies' Premium Top Handle Tote Handbag",
+    "slug": "ladies-premium-top-handle-tote-handbag",
+    "image": "products/2026/06/30/ladies_bags2.jpg",
+    "description": "Refine your everyday look with this elegant ladies' top handle tote handbag, designed for women who value sophistication, style, and practicality.",
+    "price": "89.99",
+    "available": true,
+    "created": "2026-06-30T16:46:49.962Z",
+    "updated": "2026-06-30T16:46:49.962Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 13,
+  "fields": {
+    "category": 5,
+    "name": "Women's Ribbed Polo Bodycon Mini Dress",
+    "slug": "womens-ribbed-polo-bodycon-mini-dress",
+    "image": "products/2026/06/30/ladies_clothes.jpg",
+    "description": "Refresh your wardrobe with this stylish women's ribbed polo bodycon mini dress, designed to flatter your figure while providing all-day comfort. Crafted from soft, stretchable ribbed fabric, this dress hugs your curves for a sleek and feminine silhouette. The classic polo collar and button-front neckline add a sophisticated touch, making it perfect for both casual and semi-formal occasions.",
+    "price": "39.83",
+    "available": true,
+    "created": "2026-06-30T16:50:16.603Z",
+    "updated": "2026-06-30T16:50:16.603Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 14,
+  "fields": {
+    "category": 5,
+    "name": "Women's Floral Tie-Strap Fit & Flare Mini Dress",
+    "slug": "womens-floral-tie-strap-fit-flare-mini-dress",
+    "image": "products/2026/06/30/ladies_clothes1.jpg",
+    "description": "Add a touch of elegance to your wardrobe with this charming women's floral fit & flare mini dress. Designed with a flattering sweetheart neckline and adjustable tie shoulder straps, this dress offers a feminine silhouette that's perfect for warm-weather occasions.",
+    "price": "49.88",
+    "available": true,
+    "created": "2026-06-30T16:51:42.704Z",
+    "updated": "2026-06-30T16:51:42.704Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 15,
+  "fields": {
+    "category": 5,
+    "name": "Women's Ribbed Bodycon Dress with Cropped Cardigan Set",
+    "slug": "womens-ribbed-bodycon-dress-with-cropped-cardigan-set",
+    "image": "products/2026/06/30/ladies_clothes2.jpg",
+    "description": "Upgrade your wardrobe with this chic two-piece women's bodycon dress set, featuring a figure-flattering ribbed mini dress paired with a stylish cropped cardigan. Designed for both comfort and elegance, the soft stretch fabric hugs your curves while allowing ease of movement. The square neckline adds a modern touch, and the matching button-front cardigan offers versatile styling for any season.",
+    "price": "54.99",
+    "available": true,
+    "created": "2026-06-30T17:04:57.975Z",
+    "updated": "2026-06-30T17:04:57.975Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 16,
+  "fields": {
+    "category": 3,
+    "name": "Women's Classic Toe Ring Flat Sandals – Brown",
+    "slug": "womens-classic-toe-ring-flat-sandals-brown",
+    "image": "products/2026/07/07/shoe.jpg",
+    "description": "A perfect blend of comfort, durability, and effortless elegance for the modern woman.",
+    "price": "24.99",
+    "available": true,
+    "created": "2026-07-07T19:51:30.516Z",
+    "updated": "2026-07-07T19:51:30.516Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 17,
+  "fields": {
+    "category": 5,
+    "name": "Women's Blue  Bodycon Midi Dress",
+    "slug": "womens-blue-bodycon-midi-dress",
+    "image": "products/2026/07/07/b3a437eee6b64f5aa32053a34ff5dd52.jpg",
+    "description": "Turn heads in this stylish blue bodycon midi dress, designed to enhance your silhouette with a flattering slim fit. Made from soft, stretch ribbed fabric, it features a classic round neckline, long sleeves with elegant ruffle cuffs, and a chic front slit for added comfort and style. Perfect for casual outings, church, dinner dates, parties, and special occasions.",
+    "price": "24.99",
+    "available": true,
+    "created": "2026-07-07T20:13:43.490Z",
+    "updated": "2026-07-07T20:13:43.490Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 18,
+  "fields": {
+    "category": 6,
+    "name": "Ginger Copper Body Wave Lace Front Wig",
+    "slug": "ginger-copper-body-wave-lace-front-wig",
+    "image": "products/2026/07/07/wig7.jpg",
+    "description": "Full, bouncy body wave curls in a rich ginger-copper shade with a natural HD lace front and pre-plucked hairline for a seamless, glueless-ready finish.",
+    "price": "120.00",
+    "available": true,
+    "created": "2026-07-07T20:24:58.282Z",
+    "updated": "2026-07-07T20:24:58.283Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 19,
+  "fields": {
+    "category": 6,
+    "name": "Honey Blonde Rooted Body Wave Lace Front Wig",
+    "slug": "honey-blonde-rooted-body-wave-lace-front-wig",
+    "image": "products/2026/07/07/wig6.jpg",
+    "description": "Silky honey-blonde body wave hair with a natural dark root melt for an effortless, salon-fresh look straight out the box.",
+    "price": "125.00",
+    "available": true,
+    "created": "2026-07-07T20:26:50.316Z",
+    "updated": "2026-07-07T20:26:50.316Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 20,
+  "fields": {
+    "category": 6,
+    "name": "Caramel Highlight Body Wave Lace Front Wig",
+    "slug": "caramel-highlight-body-wave-lace-front-wig",
+    "image": "products/2026/07/07/wig5.jpg",
+    "description": "Warm caramel-ginger tones with subtle highlights running through soft body wave curls; HD lace closure for an undetectable hairline.",
+    "price": "120.00",
+    "available": true,
+    "created": "2026-07-07T20:27:39.943Z",
+    "updated": "2026-07-07T20:27:39.943Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 21,
+  "fields": {
+    "category": 6,
+    "name": "Wine Red Straight Lace Front Wig",
+    "slug": "wine-red-straight-lace-front-wig",
+    "image": "products/2026/07/07/wig4.jpg",
+    "description": "Sleek, bone-straight hair in a bold wine-red shade with a deep-parted HD lace front — glossy, salon-finish straight down to the ends.",
+    "price": "110.00",
+    "available": true,
+    "created": "2026-07-07T20:28:28.920Z",
+    "updated": "2026-07-07T20:28:28.920Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 22,
+  "fields": {
+    "category": 6,
+    "name": "Jet Black Silky Straight Lace Front Wig",
+    "slug": "jet-black-silky-straight-lace-front-wig",
+    "image": "products/2026/07/07/wig3.jpg",
+    "description": "Classic jet-black straight hair with a glass-like shine, mid-part HD lace, and a natural-looking hairline for everyday elegance.",
+    "price": "105.00",
+    "available": true,
+    "created": "2026-07-07T20:29:03.829Z",
+    "updated": "2026-07-07T20:29:03.829Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 23,
+  "fields": {
+    "category": 6,
+    "name": "Natural Black Deep Curly Lace Front Wig",
+    "slug": "natural-black-deep-curly-lace-front-wig",
+    "image": "products/2026/07/07/wig2.jpg",
+    "description": "Full, defined curls in natural black with a deep middle part and HD lace closure — voluminous texture that holds its curl pattern.",
+    "price": "115.00",
+    "available": true,
+    "created": "2026-07-07T20:32:04.487Z",
+    "updated": "2026-07-07T20:32:04.487Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 24,
+  "fields": {
+    "category": 6,
+    "name": "Blonde Bob Lace Front Wig",
+    "slug": "blonde-bob-lace-front-wig",
+    "image": "products/2026/07/07/wig1.jpg",
+    "description": "Chic blunt-cut bob in golden blonde with a clean side part and HD lace front — sleek, trendy, and low-maintenance.",
+    "price": "95.00",
+    "available": true,
+    "created": "2026-07-07T20:33:02.033Z",
+    "updated": "2026-07-07T20:33:02.033Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 25,
+  "fields": {
+    "category": 6,
+    "name": "Natural Black Blunt Bob Lace Front Wig",
+    "slug": "natural-black-blunt-bob-lace-front-wig",
+    "image": "products/2026/07/07/wig.jpg",
+    "description": "Sharp, blunt-cut bob in natural black with a glossy straight finish and pre-plucked HD lace front for a flawless middle part.",
+    "price": "95.00",
+    "available": true,
+    "created": "2026-07-07T20:33:51.302Z",
+    "updated": "2026-07-07T20:33:51.302Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 26,
+  "fields": {
+    "category": 2,
+    "name": "Olive Green Sport Set (5-Piece)",
+    "slug": "olive-green-sport-set-5-piece",
+    "image": "products/2026/07/07/men_clothes2.jpg",
+    "description": "Coordinated olive-green athletic set featuring a crewneck tee, matching shorts, cap, crossbody sling bag, and flask holder — a complete streetwear-ready look for gym or casual wear.",
+    "price": "85.00",
+    "available": true,
+    "created": "2026-07-07T20:36:57.122Z",
+    "updated": "2026-07-07T20:36:57.122Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 27,
+  "fields": {
+    "category": 2,
+    "name": "All-White Puffer Vest Tracksuit Set",
+    "slug": "all-white-puffer-vest-tracksuit-set",
+    "image": "products/2026/07/07/men_clothes1.jpg",
+    "description": "Clean, all-white 3-piece set with a quilted puffer vest, matching joggers, and sneakers — a sleek, minimalist look built for comfort and street style.",
+    "price": "95.00",
+    "available": true,
+    "created": "2026-07-07T20:38:21.830Z",
+    "updated": "2026-07-07T20:38:21.830Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 28,
+  "fields": {
+    "category": 2,
+    "name": "Sky Blue Polo Sweatshirt & White Joggers Set",
+    "slug": "sky-blue-polo-sweatshirt-white-joggers-set",
+    "image": "products/2026/07/07/men_clothes.jpg",
+    "description": "Relaxed two-piece set pairing a soft sky-blue collared sweatshirt with crisp white joggers — an easy, put-together casual look with a sporty edge.",
+    "price": "65.00",
+    "available": true,
+    "created": "2026-07-07T20:39:39.134Z",
+    "updated": "2026-07-07T20:39:39.134Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 29,
+  "fields": {
+    "category": 4,
+    "name": "Powder Blue Structured Top-Handle Bag",
+    "slug": "powder-blue-structured-top-handle-bag",
+    "image": "products/2026/07/07/women_bags.jpg",
+    "description": "Elegant structured handbag in a soft powder-blue finish, featuring a polished top handle, secure push-lock clasp, and detachable crossbody strap — a versatile everyday piece that pairs formal and casual looks effortlessly.",
+    "price": "80.00",
+    "available": true,
+    "created": "2026-07-07T20:42:26.674Z",
+    "updated": "2026-07-07T20:42:26.674Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 30,
+  "fields": {
+    "category": 1,
+    "name": "Grey Sport Slide Sandals",
+    "slug": "grey-sport-slide-sandals",
+    "image": "products/2026/07/07/men_shoes1.jpg",
+    "description": "Comfortable grey slide sandals with a cushioned footbed and adjustable Velcro strap for a secure fit — includes original box and dust bag for a complete, ready-to-gift package.",
+    "price": "55.00",
+    "available": true,
+    "created": "2026-07-07T20:46:59.624Z",
+    "updated": "2026-07-07T20:46:59.624Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 32,
+  "fields": {
+    "category": 8,
+    "name": "Gold Chain, Bracelet & Watch Gift Set",
+    "slug": "gold-chain-bracelet-watch-gift-set",
+    "image": "products/2026/07/07/acces5.jpg",
+    "description": "Elegant 3-piece gold-tone set including a curb chain necklace, engraved cuff bracelet, and square-face quartz watch — packaged in a gift-ready box.",
+    "price": "50.00",
+    "available": true,
+    "created": "2026-07-07T20:57:07.391Z",
+    "updated": "2026-07-07T20:57:07.391Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 33,
+  "fields": {
+    "category": 8,
+    "name": "Gold Butterfly-Themed Jewelry Set (5-Piece)",
+    "slug": "gold-butterfly-themed-jewelry-set-5-piece",
+    "image": "products/2026/07/07/acces4.jpg",
+    "description": "Delicate gold-tone set with matching ring, bangle, pendant necklace, and stud earrings featuring a interlocking emblem design — boxed for gifting.",
+    "price": "45.00",
+    "available": true,
+    "created": "2026-07-07T20:57:59.901Z",
+    "updated": "2026-07-07T20:57:59.901Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 34,
+  "fields": {
+    "category": 8,
+    "name": "Gold Knot-Design Jewelry Set (3-Piece)",
+    "slug": "gold-knot-design-jewelry-set-3-piece",
+    "image": "products/2026/07/07/acces3.jpg",
+    "description": "Classic gold-tone knot pendant necklace, matching stud earrings, and ring — a timeless boxed set for everyday elegance.",
+    "price": "40.00",
+    "available": true,
+    "created": "2026-07-07T20:58:42.182Z",
+    "updated": "2026-07-07T20:58:42.182Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 35,
+  "fields": {
+    "category": 8,
+    "name": "Gold Watch & Butterfly Jewelry Set (5-Piece)",
+    "slug": "gold-watch-butterfly-jewelry-set-5-piece",
+    "image": "products/2026/07/07/access2.jpg",
+    "description": "Sophisticated gold-tone set with a dress watch, bangle, ring, pendant necklace, and stud earrings, all featuring a matching butterfly motif — boxed gift set.",
+    "price": "55.00",
+    "available": true,
+    "created": "2026-07-07T20:59:24.173Z",
+    "updated": "2026-07-07T20:59:24.173Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 36,
+  "fields": {
+    "category": 8,
+    "name": "Gold Crystal-Embellished Watch & Jewelry Set",
+    "slug": "gold-crystal-embellished-watch-jewelry-set",
+    "image": "products/2026/07/07/acces2.jpg",
+    "description": "Refined gold-tone set featuring a square dress watch, crystal-studded bracelet, pendant necklace, and matching drop earrings.",
+    "price": "50.00",
+    "available": true,
+    "created": "2026-07-07T21:00:23.131Z",
+    "updated": "2026-07-07T21:00:23.131Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 37,
+  "fields": {
+    "category": 7,
+    "name": "Iced-Out Gold Chain, Bracelet & Watch Set",
+    "slug": "iced-out-gold-chain-bracelet-watch-set",
+    "image": "products/2026/07/07/acces1.jpg",
+    "description": "Statement gold-tone jewelry set with a fully iced cuban-link chain, matching bracelet, pendant, and diamond-style dress watch — bold, eye-catching set for gifting or personal wear.",
+    "price": "65.00",
+    "available": true,
+    "created": "2026-07-07T21:01:13.827Z",
+    "updated": "2026-07-07T21:01:13.827Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 38,
+  "fields": {
+    "category": 7,
+    "name": "Silver Chain, Bracelet & Watch Gift Set",
+    "slug": "silver-chain-bracelet-watch-gift-set",
+    "image": "products/2026/07/07/acces.jpg",
+    "description": "Sleek silver-tone 6-piece set with a classic dress watch, cross pendant necklace, cuban-link bracelet, ring, and hoop earrings — boxed and ready to gift.",
+    "price": "50.00",
+    "available": true,
+    "created": "2026-07-07T21:02:03.377Z",
+    "updated": "2026-07-07T21:02:03.377Z"
+  }
+},
+{
+  "model": "shop.contactmessage",
+  "pk": 1,
+  "fields": {
+    "name": "shedy",
+    "email": "thankgod01@gamil.com",
+    "subject": "order",
+    "message": "My orderd Good has refuse to be delivery",
+    "created_at": "2026-06-28T15:39:16.587Z",
+    "is_read": true,
+    "reply": "",
+    "replied_at": null,
+    "replied_by": null
+  }
+},
+{
+  "model": "order.order",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "shedrackugwu01@gmail.com"
+    ],
+    "first_name": "Shedrack",
+    "last_name": "Ugwu",
+    "email": "shedrackugwu01@gmail.com",
+    "address": "Before Nru Boys",
+    "postal_code": "110011",
+    "city": "Nsukka",
+    "created": "2026-06-29T17:41:19.903Z",
+    "updated": "2026-06-29T17:41:19.903Z",
+    "paid": false
+  }
+}
+]
