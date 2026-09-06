@@ -113,6 +113,9 @@ AWS_S3_ENDPOINT_URL = config('SUPABASE_S3_ENDPOINT')  # e.g. https://<project-re
 AWS_S3_REGION_NAME = config('SUPABASE_S3_REGION', default='us-east-1')
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_AUTH = False
+# Derive the public object URL domain from the S3 endpoint, no extra env var needed
+_public_base = AWS_S3_ENDPOINT_URL.replace('/storage/v1/s3', '/storage/v1/object/public').replace('https://', '')
+AWS_S3_CUSTOM_DOMAIN = f"{_public_base}/{AWS_STORAGE_BUCKET_NAME}"
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
