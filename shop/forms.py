@@ -37,15 +37,18 @@ class SignUpForm(UserCreationForm):
             Field('newsletter'),
             Submit('submit', 'Create Account',
                    css_class='btn btn-primary btn-block mt-3'),
-            HTML('<p class="mt-3 text-center">',
-                 'Already have an account? '
-                 '<a href="{% url \'shop:login\' %}">Login</a></p>'),
+            HTML(
+                '<p class="mt-3 text-center">'
+                'Already have an account? '
+                '<a href="{% url \'shop:login\' %}">Login</a></p>'
+            ),
         )
-        def clean_email(self):
-           email = self.cleaned_data['email'].lower()
-           if User.objects.filter(email=email).exists():
-               raise forms.ValidationError('This email is already registered.')
-           return email
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email is already registered.')
+        return email
 # nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 # LOGIN FORM
 # nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
@@ -102,10 +105,6 @@ class UserUpdateForm(forms.ModelForm):
             Submit('submit', 'Save Changes',
                    css_class='btn btn-primary mt-3'),
         )
-        
-from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column, Field, Submit
 
 
 SUBJECT_CHOICES = [
